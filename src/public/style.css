@@ -1,8 +1,19 @@
-
 .header{
     background-color: white;
     height: 75px;
     display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.header_active{
+    background-color: rgba(255,255,255,0.7);
+    height: 75px;
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 
 .logo{
@@ -100,7 +111,7 @@
     margin: auto;
     display: flex;
     height: 90%;
-    width: 90%;
+    width: 100%;
     transition: transform 0.5s ease-in-out;
     overflow-x: scroll;
     overflow-y: hidden;
@@ -121,13 +132,16 @@
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-repeat: no-repeat center;
+    background-size: cover;
+    background-position:center;
 }
 
 .slider-button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: #333;
+    background-color: transparent;
     color: white;
     border: none;
     padding: 10px;
@@ -144,18 +158,157 @@
 }
 
 .card1{
-    background-image: url("img/kuromi1.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-image: url("img/kuromi4.png");
 }
 
 .card2{
     background-image: url("img/kuromi2.jpg");
-    background-size: cover;
 }
 
 .card3{
-    background-image: url("img/kuromi3.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-image: url("img/kuromi1.jpg");
 }
+
+.lastProduct{
+    width: 100%;
+    height: 200px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    background-color: #483d8a;
+    border-radius: 10px;
+}
+
+.center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .modal-box{
+    top: 40%;
+    opacity: 0;
+    visibility: hidden;
+    background: white;
+    height: auto;
+    width: 480px;
+    margin-top:140px;
+    padding: 18px 10px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 30px rgba(0,0,0,.2);
+  }
+  
+  .login-regbtn.show-modal{
+    opacity: 0;
+    visibility: hidden;
+  }
+  .modal-box.show-modal{
+    height: 100%;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    z-index: 999;
+    position: fixed;
+    visibility: visible;
+    transition: .4s;
+  }
+  .modal-box .fa-times .fa-times-img{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    margin: 10px;
+  
+    color: white;
+    font-size: 18px;
+    border-radius: 100%;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .fa-times:hover{
+    font-size: 22px;
+  }
+  
+  
+  .form_container{
+    background: #fff;
+    padding: 30px;
+    margin-top: 20px;
+    border-radius: 3px;
+  }
+
+  .visibilityHidden{
+    visibility: hidden;
+  }
+
+  .success-registration, .fail-registration{
+    margin-top: 30px;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .success-registration-text, .fail-registration-text, .fail-registration-text-desc{
+    font-family: "Anonymous Pro";
+    font-size: 24px;
+    font-weight: 700;
+    color: #483d8a;
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .fail-registration-text-desc{
+    font-size: 18px;
+  }
+
+  .success-registration-img, .fail-registration-img{
+    width: 50%;
+  }
+  
+  .form_container .form_item{
+    margin-bottom: 25px;
+  }
+  
+  .form_container .form_wrap.form_grp{
+    display: flex;
+  }
+  
+  .form_container .form_wrap.form_grp .form_item{
+    width: 50%;
+  }
+  
+  .form_container .form_wrap.form_grp .form_item:first-child{
+    margin-right: 4%;
+  }
+  
+  .form_container .form_item label{
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form_container .form_item input,
+  .form_container .form_item select{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #dadce0;
+    border-radius: 3px;
+  }
+   
+  .form_container .btn input[type="submit"]{
+    background: #483d8a;
+    border: 1px solid #483d8a;
+    padding: 10px;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    color: #fff;
+  }

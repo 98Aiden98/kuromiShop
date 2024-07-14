@@ -32,6 +32,78 @@ mysqli_query($connect, "SET NAMES utf8");
     </div>
     </header>
 
+    <div class="center modal-box">
+
+    <div class="fas fa-times"><img class="fa-times-img" src="img/cross-circle-purple.png" alt=""></div>
+
+<div class="form_container">
+
+    <div class="success-registration center visibilityHidden">
+        <img class="success-registration-img" src="img/check-mark-purple.png" alt="">
+        <p class="success-registration-text">Вы успешно зарегистрированы!</p>
+    </div>
+
+    <div class="fail-registration center visibilityHidden">
+        <img class="fail-registration-img" src="img/cross-circle-red.png" alt="">
+        <p class="fail-registration-text">Ошибка при регистрации!</p>
+        <p class="fail-registration-text-desc"></p>
+    </div>
+
+  <form class="registration-form"  action="registration.php" name="registration" id="registration" method="post">
+    <div class="form_wrap form_grp">
+        <div class="form_item">
+            <label>Имя</label>
+            <input type="text" id="first_name" name="first_name" required >
+
+        </div>
+        <div class="form_item">
+            <label>Фамилия</label>
+            <input type="text" id="last_name" name="last_name" required>
+
+        </div>
+    </div>
+    <div class="form_wrap">
+        <div class="form_item">
+            <label>Почта</label>
+            <input type="text" id="email" name="email" required>
+
+        </div>
+    </div>
+    <div class="form_wrap form_grp">
+        <div class="form_item">
+            <label>Пароль</label>
+            <input type="password" id="pass" name="pass" required>
+
+        </div>
+        <div class="form_item">
+            <label>Подтверждение пароля</label>
+            <input type="password" id="pass2" name="pass2" required>
+
+        </div>
+    </div>
+    <div class="form_wrap">
+        <div class="form_item">
+            <label>Пол</label>
+            <select id="gender" name="gender">
+                <option value="Мужской">Мужской</option>
+                <option value="Женский">Женский</option>
+            </select>
+        </div>
+    </div>
+    <div class="form_wrap">
+        <div class="form_item">
+            <label>Телефон</label>
+            <input type="text" id="phone" name="phone" required>
+            <div class="error" id="phone"></div>
+        </div>
+    </div>
+    <div class="btn">
+      <input type="submit" value="Зарегистрироваться">
+    </div>
+  </form>
+</div>
+</div>
+
     <div class="main">
     <button class="slider-button prev-btn">&#10094;</button>
         <div class="slider">
@@ -40,6 +112,16 @@ mysqli_query($connect, "SET NAMES utf8");
             <div class="card card3"></div>
         </div>
         <button class="slider-button next-btn">&#10095;</button>
+    </div>
+
+    <div class="lastProduct">
+        <div class="lastProduct-text">
+
+        </div>
+
+        <div class="lastProduct-photo">
+
+        </div>
     </div>
 
     

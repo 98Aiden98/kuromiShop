@@ -35,6 +35,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     let scrollAmount = 0;
 
+    function scrollSlider() {
+        if(scrollAmount >= slider.scrollWidth - slider.clientWidth) {
+            scrollAmount = 0;
+        } else {
+            scrollAmount += slider.clientWidth;
+        }
+        slider.scrollTo({
+            top: 0,
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+    }
+
+    setInterval(scrollSlider, 5000);
+
     prevBtn.addEventListener('click', () => {
         slider.scrollTo({
             top: 0,
@@ -48,14 +63,96 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     nextBtn.addEventListener('click', () => {
-        if(scrollAmount <= slider.scrollWidth - slider.clientWidth) {
-            slider.scrollTo({
-                top: 0,
-                left: (scrollAmount += slider.clientWidth),
-                behavior: 'smooth'
-            });
-            console.log("nextBtn clicked");
+        if(scrollAmount >= slider.scrollWidth - slider.clientWidth) {
+            scrollAmount = 0;
+        } else {
+            scrollAmount += slider.clientWidth;
         }
+        slider.scrollTo({
+            top: 0,
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+    });
+
+    const header = document.querySelector('.header');
+
+    window.addEventListener('scroll', () => {
+    if (scrollY > 0) {
+        header.classList.add('header_active');
+    } else {
+        header.classList.remove('header_active');
+    }
+    });
+
+    $(document).ready(function(){
+        $('.login-regbtn').click(function(){
+          $('.modal-box').toggleClass("show-modal");
+          $('.login-regbtn').toggleClass("show-modal");
+        });
+        $('.fa-times').click(function(){
+          $('.modal-box').toggleClass("show-modal");
+          $('.login-regbtn').toggleClass("show-modal");
+          $(".registration-form").removeClass("visibilityHidden");
+          $(".success-registration").addClass("visibilityHidden");
+          $(".fail-registration").addClass("visibilityHidden");
+        });
+      });
+
+    var request;
+
+    $("#registration").submit(function(event){
+
+        event.preventDefault();
+
+        if (request) {
+            request.abort();
+        }
+
+        var $form = $(this);
+
+        var $inputs = $form.find("input, select, button, textarea");
+
+        var serializedData = $form.serialize();
+
+        $inputs.prop("disabled", true);
+
+        request = $.ajax({
+            url: "registration.php",
+            type: "post",
+            data: serializedData,
+            dataType: "json"
+        });
+
+        request.done(function (response, textStatus, jqXHR){
+            if (response.status === 'success') {
+                console.log("Hooray, it worked!");
+                console.log(response.message);
+                $(".registration-form").addClass("visibilityHidden");
+                $(".success-registration").removeClass("visibilityHidden");
+            } else {
+                console.error("The following error occurred: " + response.message);
+                $(".registration-form").addClass("visibilityHidden");
+                    $(".fail-registration").removeClass("visibilityHidden");
+                setTimeout(function() {
+                    $(".registration-form").removeClass("visibilityHidden");
+                    $(".fail-registration").addClass("visibilityHidden");
+                }, 3000);
+                $(".fail-registration-text-desc").text(response.message);
+            }
+        });
+
+        request.fail(function (jqXHR, textStatus, errorThrown){
+            console.error(
+                "The following error occurred: "+
+                textStatus, errorThrown
+            );
+        });
+
+        request.always(function () {
+            $inputs.prop("disabled", false);
+        });
+
     });
 });
 
