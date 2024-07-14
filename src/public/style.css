@@ -1,0 +1,161 @@
+
+.header{
+    background-color: white;
+    height: 75px;
+    display: flex;
+}
+
+.logo{
+    width:75px;
+    height:75px;
+    margin-left:10px;
+}
+
+.menu{
+    font-family: "Anonymous Pro";
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    margin: auto;
+    height: 100%;
+    width: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.menu-item{
+    text-decoration: none;
+    color: #483d8a;
+    margin: auto;
+}
+
+.menu-item:hover span{
+    text-shadow: 0 0 1px #000;
+    transition: all 0.3s ease-in-out;
+}
+
+.login{
+    margin: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+}
+
+.login-logbtn, .login-regbtn{
+    font-family: "Anonymous Pro";
+    font-size: 16px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    height: 30px;
+    width: 120px;
+    margin: auto;
+    cursor: pointer;
+}
+
+.login-logbtn{
+    border-color: rgba(255,255,255,0.0);
+    background-color: rgba(255,255,255,0.0);
+    color: #483d8a;
+}
+
+.login-logbtn:hover{
+    border: solid transparent;
+    border-radius: 3px;
+    background-color: #483d8a;
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.login-regbtn{
+    border: solid transparent;
+    border-radius: 3px;
+    background-color: #483d8a;
+    color: white;
+}
+
+.login-regbtn:hover{
+    border-color: rgba(255,255,255,0.0);
+    background-color: rgba(255,255,255,0.0);
+    color: #483d8a;
+    transition: all 0.3s ease-in-out;
+}
+
+.main{
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    margin-top: 50px;
+}
+
+.slider {
+    margin: auto;
+    display: flex;
+    height: 90%;
+    width: 90%;
+    transition: transform 0.5s ease-in-out;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    
+}
+
+.slider::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+}
+
+.card {
+    min-width: 100%;
+    margin: auto;
+    height: 100%;
+    background: #f0f0f0;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.slider-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+.card1{
+    background-image: url("img/kuromi1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.card2{
+    background-image: url("img/kuromi2.jpg");
+    background-size: cover;
+}
+
+.card3{
+    background-image: url("img/kuromi3.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
