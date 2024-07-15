@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 $connect = mysqli_connect($_ENV["MYSQL_HOST"],$_ENV["MYSQL_USER"],$_ENV["MYSQL_PASSWORD"],"kuromi_shop");
 if (mysqli_connect_errno()) {
     $response['status'] = 'error';

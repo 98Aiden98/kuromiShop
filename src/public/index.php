@@ -1,12 +1,3 @@
-<?php
-$connect = mysqli_connect($_ENV["MYSQL_HOST"],$_ENV["MYSQL_USER"],$_ENV["MYSQL_PASSWORD"],"kuromi_shop");
-if (mysqli_connect_errno()) {
-    printf("error: %s\n", mysqli_connect_error());
-    exit();
-}
-mysqli_query($connect, "SET NAMES utf8");
-?>
-
 <!doctype html>
 <html lang="ru">
 <head>
@@ -29,8 +20,43 @@ mysqli_query($connect, "SET NAMES utf8");
     <div class="login">
         <button class="login-logbtn">Войти</button>
         <button class="login-regbtn">Регистрация</button>
+        <span class="login-active-user visibilityHidden"></span>
     </div>
     </header>
+
+    <div class="center login-modal-box">
+
+        <div class="login-fas login-fa-times"><img class="fa-times-img" src="img/cross-circle-purple.png" alt=""></div>
+
+        <div class="login_container">
+
+        <div class="fail-registration center visibilityHidden">
+            <img class="fail-registration-img" src="img/cross-circle-red.png" alt="">
+            <p class="fail-registration-text">Пользователь с такими данными не найден</p>
+        </div>
+
+        <form class="login-form" action="" name="login-form" id="login-form" method="post">
+            <div class="form_wrap form_grp">
+                <div class="form_item">
+                    <label>Почта</label>
+                    <input type="text" id="email" name="email" required>
+                </div>
+            </div>
+            <div class="form_wrap form_grp">
+                <div class="form_item">
+                    <label>Пароль</label>
+                    <input type="password" id="pass" name="pass" required>
+                </div>
+            </div>
+
+
+            <div class="btn">
+            <input type="submit" value="Войти">
+            </div>
+        </form>
+
+    </div>
+    </div>
 
     <div class="center modal-box">
 

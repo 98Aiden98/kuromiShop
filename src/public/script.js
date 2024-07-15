@@ -27,6 +27,81 @@
 //     $(this).fadeTo('slow',0.1);
 // })
 document.addEventListener('DOMContentLoaded', (event) => {
+    function refreshToken() {
+        const jwt = localStorage.getItem('jwt');
+        const refreshJwt = localStorage.getItem('refresh_jwt');
+
+        if (jwt && refreshJwt) {
+            $.ajax({
+                url: "refresh.php",
+                type: "post",
+                data: { refresh_token: refreshJwt },
+                dataType: "json",
+                success: function (response) {
+                    if (response.status === 'success') {
+                        localStorage.setItem('jwt', response.jwt);
+                        localStorage.setItem('refresh_jwt', response.refresh_jwt);
+                        console.log("Token refreshed");
+                    } else {
+                        console.error("Refresh token failed: " + response.message);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    if (jqXHR.responseJSON) {
+                        console.error("The following error occurred: " + jqXHR.responseJSON.message);
+                    } else {
+                        console.error("The following error occurred: " + textStatus, errorThrown);
+                    }
+                }
+            });
+        }
+    }
+
+    // Выполняем JWT проверку и обновление
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+        const parsedJWT = JSON.parse(atob(jwt.split('.')[1]));
+        const current_time = Date.now() / 1000;
+
+        if (parsedJWT.exp < current_time) {
+            refreshToken();
+        } else {
+            console.log("Token is still valid");
+            validateToken();
+        }
+    }
+
+    function validateToken() {
+        const jwt = localStorage.getItem('jwt');
+        if (jwt) {
+            $.ajax({
+                url: "validate_token.php",
+                type: "POST",
+                data: { token: jwt },
+                dataType: "json",
+                success: function (response) {
+                    if (response.status === 'success') {
+                        console.log("Token is valid");
+                        $(".login-logbtn").toggleClass('visibilityHidden');
+                        $(".login-regbtn").toggleClass('visibilityHidden');
+                        $(".login-active-user").toggleClass('visibilityHidden');
+                        $(".login-active-user").text(response.userName + ", здравствуйте!");
+                    } else {
+                        console.error("Token is invalid: " + response.message);
+                        refreshToken();
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error("The following error occurred: " + textStatus, errorThrown);
+                }
+            });
+        } else {
+            console.log("No token found");
+            // Здесь можно выполнить действия для перенаправления пользователя на страницу входа
+        }
+    }
+
+
     const slider = document.querySelector('.slider');
     const card = document.querySelector('.card');
     const prevBtn = document.querySelector('.prev-btn');
@@ -88,18 +163,61 @@ document.addEventListener('DOMContentLoaded', (event) => {
     $(document).ready(function(){
         $('.login-regbtn').click(function(){
           $('.modal-box').toggleClass("show-modal");
-          $('.login-regbtn').toggleClass("show-modal");
         });
         $('.fa-times').click(function(){
           $('.modal-box').toggleClass("show-modal");
-          $('.login-regbtn').toggleClass("show-modal");
           $(".registration-form").removeClass("visibilityHidden");
           $(".success-registration").addClass("visibilityHidden");
           $(".fail-registration").addClass("visibilityHidden");
         });
+        $('.login-logbtn').click(function(){
+            $('.login-modal-box').toggleClass("show-modal");
+        });
+        $('.login-fa-times').click(function(){
+            $('.login-modal-box').toggleClass("show-modal");
+          });
       });
 
     var request;
+    
+        $("#login-form").submit(function(event){
+            event.preventDefault();
+            
+            if (request) {
+                request.abort();
+            }
+    
+            var $form = $(this);
+            var $inputs = $form.find("input, select, button, textarea");
+            var serializedData = $form.serialize();
+    
+            $inputs.prop("disabled", true);
+    
+            request = $.ajax({
+                url: "authorization.php",
+                type: "post",
+                data: serializedData,
+                dataType: "json"
+            });
+    
+            request.done(function (response, textStatus, jqXHR){
+                if (response.status === 'success') {
+                    localStorage.setItem('jwt', response.jwt);
+                    localStorage.setItem('refresh_jwt', response.refresh_jwt);
+                    console.log("Login successful and JWT saved to localStorage.");
+                } else {
+                    console.error("Login failed: " + response.message);
+                }
+            });
+    
+            request.fail(function (jqXHR, textStatus, errorThrown){
+                console.error("The following error occurred: " + textStatus, errorThrown);
+            });
+    
+            request.always(function () {
+                $inputs.prop("disabled", false);
+            });
+        });
 
     $("#registration").submit(function(event){
 

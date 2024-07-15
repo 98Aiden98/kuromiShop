@@ -185,7 +185,7 @@
     transform: translate(-50%, -50%);
   }
 
-  .modal-box{
+  .modal-box, .login-modal-box{
     top: 40%;
     opacity: 0;
     visibility: hidden;
@@ -202,7 +202,7 @@
     opacity: 0;
     visibility: hidden;
   }
-  .modal-box.show-modal{
+  .modal-box.show-modal, .login-modal-box.show-modal{
     height: 100%;
     top: 30%;
     left: 50%;
@@ -213,7 +213,12 @@
     visibility: visible;
     transition: .4s;
   }
-  .modal-box .fa-times .fa-times-img{
+
+  .login-modal-box.show-modal{
+    height: 50%;
+  }
+
+  .modal-box .fa-times .fa-times-img, .login-modal-box .login-fa-times .fa-times-img{
     position: absolute;
     top: 0;
     right: 0;
@@ -229,12 +234,12 @@
     cursor: pointer;
   }
 
-  .fa-times:hover{
+  .fa-times:hover, .login-fa-times:hover{
     font-size: 22px;
   }
   
   
-  .form_container{
+  .form_container, .login_container{
     background: #fff;
     padding: 30px;
     margin-top: 20px;
@@ -273,29 +278,31 @@
     width: 50%;
   }
   
-  .form_container .form_item{
+  .form_container .form_item, .login_container .form_item{
     margin-bottom: 25px;
   }
   
-  .form_container .form_wrap.form_grp{
+  .form_container .form_wrap.form_grp, .login_container.form_wrap.form_grp{
     display: flex;
   }
   
-  .form_container .form_wrap.form_grp .form_item{
+  .form_container .form_wrap.form_grp .form_item, .login_container.form_wrap.form_grp .form_item{
     width: 50%;
   }
   
-  .form_container .form_wrap.form_grp .form_item:first-child{
+  .form_container .form_wrap.form_grp .form_item:first-child, .login_container.form_wrap.form_grp .form_item:first-child{
     margin-right: 4%;
   }
   
-  .form_container .form_item label{
+  .form_container .form_item label, .login_container.form_item label{
     display: block;
     margin-bottom: 5px;
   }
   
   .form_container .form_item input,
-  .form_container .form_item select{
+  .form_container .form_item select,
+  .login_container .form_item input,
+  .login_container .form_item select{
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -303,7 +310,7 @@
     border-radius: 3px;
   }
    
-  .form_container .btn input[type="submit"]{
+  .form_container .btn input[type="submit"], .login_container .btn input[type="submit"]{
     background: #483d8a;
     border: 1px solid #483d8a;
     padding: 10px;
