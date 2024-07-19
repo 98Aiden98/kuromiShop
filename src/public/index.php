@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <title></title>
+  <title>So cute</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="reset.css" />
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Anonymous+Pro" />
@@ -18,9 +18,12 @@
         <a href="" class="menu-item"><span>Контакты</span></a>
     </div>
     <div class="login">
-        <button class="login-logbtn">Войти</button>
-        <button class="login-regbtn">Регистрация</button>
-        <span class="login-active-user visibilityHidden"></span>
+        <button class="login-logbtn visibilityHidden">Войти</button>
+        <button class="login-regbtn visibilityHidden">Регистрация</button>
+        <div class="login-active-user visibilityHidden">
+            <img class="login-active-user-logo"src="img/user-purple.png" alt="">
+            <span class="login-active-user-text"></span>
+        </div>
     </div>
     </header>
 
@@ -155,6 +158,6 @@
     <footer></footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>

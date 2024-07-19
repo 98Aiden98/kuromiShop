@@ -1,3 +1,7 @@
+body{
+  height:100vh;
+}
+
 .header{
     background-color: white;
     height: 75px;
@@ -218,6 +222,27 @@
     height: 50%;
   }
 
+  .login-active-user{
+    width: auto;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    cursor: pointer;
+  }
+
+  .login-active-user-logo{
+    height: 30px;
+  }
+
+  .login-active-user-text{
+    font-family: "Anonymous Pro";
+    font-size: 16px;
+    font-weight: 700;
+    color: #483d8a;
+  }
+
   .modal-box .fa-times .fa-times-img, .login-modal-box .login-fa-times .fa-times-img{
     position: absolute;
     top: 0;
@@ -231,7 +256,12 @@
     font-size: 18px;
     border-radius: 100%;
     text-align: center;
-    cursor: pointer;
+    cursor: pointer;font-family: "Anonymous Pro";
+    font-size: 16px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    color: #483d8a;
   }
 
   .fa-times:hover, .login-fa-times:hover{
@@ -318,4 +348,146 @@
     border-radius: 3px;
     cursor: pointer;
     color: #fff;
+  }
+
+  .account-main-block{
+    width: 100%;
+    height:100%;
+  }
+
+  .account-left-menu{
+    width:20%;
+    height:100%;
+    border-radius: 0px 10px 10px 0px;
+    background-color: #483d8a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .account-userinfo{
+    height: 30%;
+    margin: auto;
+    margin-top: 30px;
+  }
+
+  .account-userphoto{
+    margin: auto;
+    width: 150px;
+    height: 170px;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 0 10px;
+  }
+  
+  .account-userphoto-form{
+    width: 100%;
+    height: 100%;
+  }
+
+  .account-upload-userphoto-form{
+    width: 100%;
+    height: 100%;
+  }
+
+  .account-userphoto-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  .account-username{
+    margin: auto;
+    margin-top: 10px;
+    width: 100%;
+    height: 20px;
+    text-align: center;
+  }
+
+  .account-username-text{
+    font-family: "Anonymous Pro";
+    font-size: 16px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    color: white;
+  }
+
+  .account-upload-userphoto-form input[type=file] {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    display: block;
+    width: 0;
+    height: 0;
+  }
+
+  .account-menu{
+    margin: auto;
+    width: 100%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .account-menu-list{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 30px;
+  }
+
+  .account-menu-item{
+    display: flex;
+    width: 100%;
+    height: 50px;
+    font-family: "Anonymous Pro";
+    font-size: 20px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    background-color:#483d8a;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-bottom-width:1px;
+   border-bottom-color:white;
+   border-bottom-style: solid;
+  }
+
+  .account-menu-link{
+    width: 100%;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .account-menu-item-img-container, .account-menu-arrowright{
+    width: 17%;
+    height: 70%;
+    display: flex;
+    align-items:center;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin-left: 3px;
+  }
+
+  .account-menu-arrowright{
+    width: 7%;
+  }
+
+  .account-menu-item-img, .arrow-right{
+    height: 50%;
+    object-fit: cover;
+    filter: invert(1);
+  }
+
+  .arrow-right{
+
   }

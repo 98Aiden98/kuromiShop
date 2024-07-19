@@ -1,5 +1,8 @@
 <?php
+$DEFAULT_USERPHOTO_PATH = "/img/default.png";
+
 error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+
 $connect = mysqli_connect($_ENV["MYSQL_HOST"],$_ENV["MYSQL_USER"],$_ENV["MYSQL_PASSWORD"],"kuromi_shop");
 if (mysqli_connect_errno()) {
     $response['status'] = 'error';
@@ -52,11 +55,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Привязка параметров
     $stmt->bind_param("ssssss", $firstName, $lastName, $email, $hashedPassword, $gender, $phone);
+
     
-    // Выполнение запроса
+    // Добавление записи
     if ($stmt->execute()) {
         $response['status'] = 'success';
         $response['message'] = 'New record created successfully';
+
+        $last_id = $connect->insert_id;
+
+        $sqlUserPhoto = "INSERT INTO UserPhoto (UserID, path) VALUES (?, ?)"; // Добавление записи в таблицу с фотографиями
+        $stmtUserPhoto = $connect->prepare($sqlUserPhoto);
+        $stmtUserPhoto->bind_param("is", $last_id, $DEFAULT_USERPHOTO_PATH);
+        $stmtUserPhoto->execute();
     } else {
         $response['status'] = 'error';
         $response['message'] = 'Error: ' . $sql . '<br>' . $conn->error;

@@ -29,12 +29,12 @@ if($token != null){
         $stmt->execute();
 
         $result = $stmt->get_result();
-        $nameResult = $result->fetch_assoc();
+        $dataResult = $result->fetch_assoc();
         $response = [
             'status' => 'success',
             'message' => 'Token is valid',
             'data' => $decoded->data,
-            'userName' => $nameResult['FirstName']
+            'userData' => $dataResult
         ];
         echo json_encode($response);
     } catch (Exception $e) {
